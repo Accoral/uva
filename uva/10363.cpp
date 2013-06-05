@@ -46,7 +46,7 @@ int run ( ) {
 }
 int main()
 {
-	int cnt_x, cnt_o;
+	int cnt_x, cnt_o, cc;
 	int T, ok, i, j;
 	scanf ( "%d", &T );
 	while ( T-- ) {
@@ -60,10 +60,11 @@ int main()
 				else if ( s[i][j] != '.' ) ok = 0;
 		//printf ( "x=%d o=%d\n", cnt_x, cnt_o );
 		if ( ok ) {
-			if ( run() == 2 && cnt_x == 5 && x==2 && o == 0 && (cnt_x-cnt_o==1||cnt_x-cnt_o==0) ) ok = 1;
-			else if ( run() == 0 && (cnt_x-cnt_o==1||cnt_x-cnt_o==0) ) ok = 1;
-			else if ( run() == 1 && x == 1 && cnt_x-cnt_o == 1 ) ok = 1;
-			else if ( run() == 1 && o == 1 && cnt_x-cnt_o == 0 ) ok = 1;
+			cc = run ( );
+			if ( cc == 2 && cnt_x == 5 && x==2 && o == 0 && (cnt_x-cnt_o==1||cnt_x-cnt_o==0) ) ok = 1;
+			else if ( cc == 0 && (cnt_x-cnt_o==1||cnt_x-cnt_o==0) ) ok = 1;
+			else if ( cc == 1 && x == 1 && cnt_x-cnt_o == 1 ) ok = 1;
+			else if ( cc == 1 && o == 1 && cnt_x-cnt_o == 0 ) ok = 1;
 			else ok = 0;
 		}
 		if ( ok ) puts ( "yes" );
