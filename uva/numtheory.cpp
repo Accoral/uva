@@ -160,22 +160,52 @@ int pow_mod ( int a, int cnt, int mod ) {
 	if ( cnt&1 ) ans=ans*a%mod;
 	return ans;
 }
+template<typename T>
+void ext_euclid(T a, T b, T &x, T &y, T &g) {
+    x = 0; y = 1; g = b;
+    T m, n, q, r;
+    for (T u=1, v=0; a != 0; g=a, a=r) {
+        q = g / a; r = g % a;
+        m = x-u*q; n = y-v*q;
+        x=u; y=v; u=m; v=n;
+    }
+}
+/*
+   求val内与m互质的个数
+   其中fun调用dfs
+   */
+IIV aa;
+u64 dfs ( int cur, int val ) {//val内与m不互质的个数
+	u64 res = 0;
+	for ( int i = cur; i < aa.size(); ++i ) {
+		res += val/aa[i].first- dfs( i+1,val/aa[i].first );
+	}
+	return res;
+}
+u64 fun ( int val, int m ) {//val内与m互质的个数
+	aa.clear ( );
+	prime_factorize ( m, aa );
+	return val - dfs(0,val);
+}
 int main()
 {
 	prime_sieve ( );
-	cout << get_powers ( 9, 3 ) << endl;
 	/*
+	cout << get_powers ( 9, 3 ) << endl;
 	IV ans;
 	prime_seg_sieve ( 100000, 100100, ans );
 	For ( IV, it, ans ) printf ( "%d ", *it ); printf ( "\n" );
+	*/
 	IIV ans;
-	prime_factorize ( 105, ans );
+	prime_factorize ( 431, ans );
 	For ( IIV, it, ans ) printf ( "%d %d\n", it->first, it->second ); printf ( "\n" );
+	//cout << 985*1393 << endl;
+	/*
 	IV ans;
 	divisors ( 105, ans );
 	For ( IV, it, ans ) printf ( "%d ", *it ); printf ( "\n" );
-	*/
 	//cout << count_divisors(105 ) <<endl;
+	*/
 
     return 0;
 }
