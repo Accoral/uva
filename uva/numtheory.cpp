@@ -178,7 +178,7 @@ IIV aa;
 u64 dfs ( int cur, int val ) {//val内与m不互质的个数
 	u64 res = 0;
 	for ( int i = cur; i < aa.size(); ++i ) {
-		res += val/aa[i].first- dfs( i+1,val/aa[i].first );
+		res += val/aa[i].first - dfs( i+1,val/aa[i].first );
 	}
 	return res;
 }
