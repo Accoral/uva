@@ -37,8 +37,9 @@ struct Point {
   double x, y;
   Point(double x=0, double y=0):x(x),y(y) { }
 };
-bool operator < (const Point& a, const Point& b) {
-  return a.x < b.x || (a.x == b.x && a.y < b.y);
+bool operator < (const Point& a, const Point& b) {//精度高的版本
+  //return a.x < b.x || (a.x == b.x && a.y < b.y);
+  return dcmp(a.x-b.x) < 0 || (dcmp(a.x-b.x) == 0 && dcmp(a.y-b.y) < 0);
 }
 bool operator == (const Point& a, const Point &b) {
   return dcmp(a.x-b.x) == 0 && dcmp(a.y-b.y) == 0;
